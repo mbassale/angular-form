@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-form-sku',
@@ -7,12 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormSkuComponent implements OnInit {
 
-  constructor() { }
+  skuFormGroup: FormGroup;
+
+  constructor(formBuilder: FormBuilder) {
+    this.skuFormGroup = formBuilder.group({
+      'sku': ['ACB123'],
+      'name': ['Product Name']
+    });
+  }
 
   ngOnInit() {
   }
 
-  onSubmit(form: any): void {
+  onSubmit(form: any, event: Event): void {
+    event.preventDefault();
     console.log('submitted:');
     console.log(form);
   }
