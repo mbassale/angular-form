@@ -2,20 +2,22 @@
   <h2 class="ui header">SKU Form</h2>
   <form [formGroup]="skuFormGroup" (ngSubmit)="onSubmit(skuFormGroup.value, $event)" class="ui form">
 
-    <div class="field">
+    <div class="field" [class.error]="!skuFormGroup.controls['sku'].valid && skuFormGroup.controls['sku'].touched">
       <label for="skuInput">SKU</label>
       <input type="text"
              id="skuInput"
              placeholder="SKU"
              [formControl]="skuFormGroup.controls['sku']">
+      <div [class.visible]="!skuFormGroup.controls['sku'].valid && skuFormGroup.controls['sku'].touched" class="ui error message">SKU is invalid</div>
     </div>
 
-    <div class="field">
+    <div class="field" [class.error]="!skuFormGroup.controls['name'].valid && skuFormGroup.controls['name'].touched">
       <label for="nameInput">Name</label>
       <input type="text"
              id="nameInput"
              placeholder="Product Name"
              [formControl]="skuFormGroup.controls['name']">
+      <div class="ui error message" [class.visible]="!skuFormGroup.controls['name'].valid && skuFormGroup.controls['name'].touched">Name is invalid</div>
     </div>
 
     <button type="submit" class="ui button primary">Submit</button>

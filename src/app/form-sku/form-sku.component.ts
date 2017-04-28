@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-form-sku',
@@ -12,8 +12,8 @@ export class FormSkuComponent implements OnInit {
 
   constructor(formBuilder: FormBuilder) {
     this.skuFormGroup = formBuilder.group({
-      'sku': ['ACB123'],
-      'name': ['Product Name']
+      'sku': ['', Validators.required],
+      'name': ['', Validators.required]
     });
   }
 
@@ -21,7 +21,6 @@ export class FormSkuComponent implements OnInit {
   }
 
   onSubmit(form: any, event: Event): void {
-    event.preventDefault();
     console.log('submitted:');
     console.log(form);
   }
