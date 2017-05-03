@@ -15,6 +15,18 @@ export class FormSkuComponent implements OnInit {
       'sku': ['', Validators.compose([Validators.required, this.skuValidator])],
       'name': ['', Validators.required]
     });
+
+    this.skuFormGroup.controls['sku'].valueChanges.subscribe((value: string) => {
+      console.log('SKU changed: ' + value);
+    });
+
+    this.skuFormGroup.controls['name'].valueChanges.subscribe((value: string) => {
+      console.log('Name changed:  ' + value);
+    });
+
+    this.skuFormGroup.valueChanges.subscribe((form: any) => {
+      console.log('Form changed: ', form);
+    });
   }
 
   ngOnInit() {
