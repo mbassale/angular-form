@@ -9,11 +9,13 @@ import {AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, 
 export class FormSkuComponent implements OnInit {
 
   skuFormGroup: FormGroup;
+  productDescription: string;
 
   constructor(formBuilder: FormBuilder) {
     this.skuFormGroup = formBuilder.group({
       'sku': ['', Validators.compose([Validators.required, this.skuValidator])],
-      'name': ['', Validators.required]
+      'name': ['', Validators.required],
+      'description': ['', Validators.nullValidator]
     });
 
     this.skuFormGroup.controls['sku'].valueChanges.subscribe((value: string) => {

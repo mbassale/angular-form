@@ -1,5 +1,6 @@
 <div class="ui raised segment">
   <h2 class="ui header">SKU Form</h2>
+  <p *ngIf="productDescription != ''"><em>{{ productDescription }}</em></p>
   <form [formGroup]="skuFormGroup" (ngSubmit)="onSubmit(skuFormGroup.value, $event)" class="ui form">
 
     <div class="field" [class.error]="!skuFormGroup.controls['sku'].valid && skuFormGroup.controls['sku'].touched">
@@ -18,6 +19,15 @@
              placeholder="Product Name"
              [formControl]="skuFormGroup.controls['name']">
       <div class="ui error message" [class.visible]="!skuFormGroup.controls['name'].valid && skuFormGroup.controls['name'].touched">Name is invalid</div>
+    </div>
+
+    <div class="field" [class.error]="!skuFormGroup.controls['description'].valid && skuFormGroup.controls['description'].touched">
+      <label for="descriptionInput">Description</label>
+      <input type="text"
+             id="descriptionInput"
+             placeholder="Product Description"
+             [formControl]="skuFormGroup.controls['description']"
+             [(ngModel)]="productDescription">
     </div>
 
     <button type="submit" class="ui button primary">Submit</button>
